@@ -1,0 +1,18 @@
+/*
+List <Account> acctList= new list <Account>();//LIST VARIABLE
+acctList=[SELECT Id, Name, Phone, Description FROM Account];
+system.debug(acctList);
+
+for(Account accountRecord:acctList){
+  accountRecord.Description = 'For loop description'; 
+   update accountRecord; 
+}
+*/
+
+List<Integer> myIntList=new List<Integer>{1,2,3,4,5};
+    system.debug('Elements of this List' +myIntList);
+    
+for(Integer myInteger:myIntList){
+    Integer newInt=myInteger*5;
+    system.debug('New Integer is ' +newInt);
+}
