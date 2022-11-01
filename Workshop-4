@@ -1,0 +1,40 @@
+SELECT Id, Phone, Company, LastName, FirstName, Website, City, Country FROM Lead LIMIT 10
+SELECT Name, Company, LeadSource, AnnualRevenue FROM Lead
+WHERE AnnualRevenue > 100000 AND LeadSource = 'Web'
+ORDER BY Name ASC 
+SELECT Id, Name, COUNT (Email) FROM Lead
+WHERE Email LIKE '%.com'
+List<Lead> myLeads= [SELECT Id,FirstName,Email FROM Lead WHERE Email LIKE '%.net']; // or Lead[]
+system.debug('My leads are' +myLeads);
+List<Lead> myLeads= [SELECT Id,FirstName,Email FROM Lead WHERE Email LIKE '%.net'];
+system.debug('My leads are' +myLeads+ ' The Size of leads:' +myLeads.size());
+list <lead> newLeads= new list <lead>();
+Lead addLead = new Lead(FirstName = 'Sara Maple',Email='saramaple@806.net');
+myLeads.add(addLead);
+system.debug('My leads are' +myLeads+ ' The Size of list:' +myLeads.size());
+
+SELECT Id, Name, Phone, Website, Industry, (SELECT Name FROM Contacts), (SELECT Name, Amount FROM Opportunities) FROM Account
+WHERE Industry LIKE '%energy%'
+
+SELECT Id, Name, OppLookUp__r.Name, OppLookUp__r.Amount FROM Test__c
+SELECT Name, AnnualRevenue, (SELECT Name FROM Opportunities)
+FROM Account
+ORDER BY AnnualRevenue DESC
+ LIMIT 5
+
+list<Account> myAcct= [SELECT Name, AnnualRevenue, (SELECT Name FROM Opportunities)FROM Account ORDER BY AnnualRevenue DESC LIMIT 5];
+system.debug(myAcct.size());
+
+		 	 	 		
+list<Opportunity> top5= new List<opportunity>();
+for(Account a:myAcct){
+        top5.addall(a.Opportunities);
+            }
+		system.debug(myAcct);
+	
+					
+						
+    for(Account a:myAcct){
+        a.Description = newDescription;
+        system.debug(myAcct);
+    }
