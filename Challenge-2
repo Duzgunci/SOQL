@@ -1,0 +1,27 @@
+//Challenge***
+//Step1---> Write an SOQL to get ALL CONTACTS FROM SF ORG WITH THE FOLLOWING FIELDS: NAME, Department, TITLE.
+//Steo2---> Retrive all related cases (CaseNumber, Subject fields) 
+//Step3---> Get parent Account's Name, Rating, for each contact
+//Step4---> AccountName and AccountRating are firts two columns for each contact
+//Step5---> Retrieve only records with AccountRating is HOT 
+//Step6---> Sort Results by Contact Name
+//Step7---> Retrieve open Cases (Case isClosed checkbox field)
+//Step8---> Add one more filter condition: Contact Department must be 'Technology'
+
+Answer:
+
+SELECT Name, Department,Title From Contact 
+
+SELECT Name, Department, Title, (SELECT CaseNumber,Subject FROM Cases) From Contact 
+
+SELECT Name, Department,Title, Account.Name, Account.Rating, (SELECT CaseNumber,Subject FROM Cases) From Contact 
+
+SELECT Account.Name, Account.Rating, Name, Department,Title, (SELECT CaseNumber,Subject FROM Cases) From Contact 
+
+SELECT Account.Name, Account.Rating, Name, Department,Title, (SELECT CaseNumber,Subject FROM Cases) From Contact WHERE Account.Rating='Hot'
+
+SELECT Account.Name, Account.Rating, Name, Department,Title, (SELECT CaseNumber,Subject FROM Cases) From Contact WHERE Account.Rating='Hot' ORDER BY Name
+
+
+SELECT Account.Name, Account.Rating, Name, Department,Title, (SELECT CaseNumber,Subject, IsClosed FROM Cases) From Contact WHERE Account.Rating='Hot'  ORDER BY Name
+SELECT Account.Name, Account.Rating, Name, Department,Title, (SELECT CaseNumber,Subject, IsClosed FROM Cases) From Contact WHERE Account.Rating='Hot' AND Department='Technology' ORDER BY Name 
