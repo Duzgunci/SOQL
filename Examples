@@ -10,3 +10,51 @@ system.debug(myOrgAccts);
 Where Name Like ‘%SLE’ —---> checks if name ends with SLA
 Where Name Like ‘SLA%’ —---> checks if name starts with SLA
 Where Name Like ‘%SLA%’ —---> checks if SLA exists anywhere in the Name
+SELECT count () From Account  
+SELECT Name, Id From Account  Name LIKE 'Apex%'
+SELECT Max(AnnualRevenue) From Account  
+SELECT Min(AnnualRevenue) From Account  
+SELECT Avg(AnnualRevenue) From Account  
+SELECT MAX(CreatedDate), MIN (CreatedDate) From Account  
+SELECT NAME From Account ORDER BY Name ASC 
+SELECT NAME, Id From Account ORDER BY Name (By default it is ASC order)
+SELECT NAME, Id From Account ORDER BY Name DESC
+SELECT NAME, Id, CreatedDate From Account ORDER BY CreatedDate
+SELECT Name, Id, AnnualRevenue From Account WHERE AnnualRevenue != null ORDER BY AnnualRevenue DESC
+SELECT Name, Id, AnnualRevenue From Account ORDER BY AnnualRevenue DESC nulls last
+
+Operators used in SOQL --->All these operators use CASE SENSITIVE SEARCH EXCEPT LIKE OPERATOR
+--> Equals (=)
+--> Not Equals (!=)
+--> Less than (<)
+--> Less than or equal (<=)
+--> Greater than (>)
+--> Greater than or equal(>=)
+--> LIKE
+--> IN
+--> NOT IN --> works exactly as opposite of IN operator...
+
+SELECT Name, Id, AnnualRevenue From Account WHERE Id IN ('0018Z00002jnjsOQAQ','0018Z00002jnjsLQAQ', '0018Z00002jnjsVQAQ')
+
+*****(Should be same object in the parenthesis)
+Check objects id number. Account starts with 001
+
+SELECT Name, Id, AnnualRevenue From Account WHERE NAME NOT IN ('Apex AccountV2','Company AccountV2', 'Edge Communications')
+SELECT Name, Id, AnnualRevenue From Account ORDER BY NAME ASC LIMIT 10
+
+SELECT Name, Id, AnnualRevenue From Account ORDER BY NAME DESC LIMIT 10
+
+SELECT Name, Id, AnnualRevenue From Account ORDER BY NAME DESC LIMIT 5 OFFSET 5
+
+SELECT Name, Id, AnnualRevenue, CreatedDate From Account Where CreatedDate >= 2022-09-01T00:00:00.000+0000
+
+SELECT Name, Id, AnnualRevenue, CreatedDate From Account Where CreatedDate >= TODAY
+SELECT Name, Id, AnnualRevenue, CreatedDate From Account WHERE CreatedDate=LAST_N_DAYS:2
+SELECT Name, Id, AnnualRevenue, CreatedDate From Account WHERE CreatedDate=LAST_N_WEEKS:2
+
+
+
+
+
+
+
