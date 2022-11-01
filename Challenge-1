@@ -1,0 +1,25 @@
+Challenge:
+//Challenge***
+//Step1---> Write an SOQL to get ALL CONTACTS FROM SF ORG WITH THE FOLLOWING FIELDS: NAME, TITLE, PHONE, EMAIL.
+//Steo2---> Retrive contact records with TITLE 'VP, Technology'
+//Step3---> Add another column field called 'DEPARTMENT' and should be 2nd field in the result
+//Step4---> Add one more condition along with the condition in step 2. Has DEPARTMENT value as 'Finance'
+//Step5---> Inlcude all SVP and VP in your search
+//Step6---> Sort Results by Name in descending order
+//Step7---> Limit the result by 2
+
+ANSWER:
+
+//Step1---> SELECT Name, Title, Phone, Email FROM CONTACT
+//Step2---> SELECT Name, Title, Phone, Email FROM CONTACT WHERE TITLE='VP, Technology'
+//Step3---> SELECT Name, Department, Title, Phone, Email FROM CONTACT WHERE TITLE='VP, Technology'
+//Step4---> SELECT Name, Department, Title, Phone, Email FROM CONTACT WHERE TITLE='VP, Technology' AND Department='Finance'
+//Step5---> SELECT Name, Department, Title, Phone, Email FROM CONTACT WHERE TITLE LIKE '%VP%' AND Department='Finance'
+//Step6---> SELECT Name, Department, Title, Phone, Email FROM CONTACT WHERE TITLE LIKE '%VP%' AND Department='Finance' ORDER BY NAME DESC
+//Step7---> SELECT Name, Department, Title, Phone, Email FROM CONTACT WHERE TITLE LIKE '%VP%' AND Department='Finance' ORDER BY NAME DESC LIMIT 
+
+Date fields supportted by SOQL:
+---> Date format: YYYY-MM-DD
+--->DateTime format: YYYY-MM-DDThh:mm:ss+hh:mm OR YYYY-MM-DDThh:mm:ss-hh:mm OR YYYY-MM-DDThh:mm:ssZ
+--->Date Literals: TODAY, YESTERDAY, TOMORROW, LAST_WEEK(Month, year, quarter), THIS_WEEK(Month, year, quarter), NEXT_WEEK(Month, year, quarter)
+--->Advanced Data Literals: LAST_N_DAYS(MONTHS, WEEKS, YEARS, Quarters):n, NEXT_N_DAYS(MONTHS, WEEKS, YEARS, Quarters)
