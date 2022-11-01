@@ -1,0 +1,56 @@
+Relationships
+
+SELECT Name,Id,Department, Account.Name, Account.AnnualRevenue, Account.Rating FROM Contact  (Child to Parent)
+
+**We are getting field Label. In this case, it is Account
+
+**We can see lookup field in Child Object in Field and Relationships
+
+***In custom object we use Object__r (r for relationship)
+
+
+
+(Parent to Child)
+
+Go to opportunity —> Use  Child Relation Name (In this case Opportunities)
+
+SELECT Id,Name, AnnualRevenue, (Select Amount FROM Opportunities) ,(SELECT Name, Email FROM Contacts) FROM Account WHERE AnnualRevenue>1000000 AND AnnualRevenue!=NULL 
+
+
+SELECT (Select Amount FROM Opportunities Where Amount>1000000), Id, Name, AnnualRevenue, (Select Name, Email From Contacts) From Account WHERE AnnualRevenue>1000000 AND AnnualRevenue!=NULL
+
+SELECT Name, Email,Account.AnnualRevenue from Contact Where Account.AnnualRevenue>2000000  (We put parent as condition)
+
+SOQL Debug Screen:
+
+list<Contact> myContact= new List<Contact>();
+myContact=[SELECT Name, Email,Account.AnnualRevenue from Contact Where Account.AnnualRevenue>2000000];
+system.debug('Size of my contacts ' +myContact.size());
+for(Contact cont:myContact){ //for(integer i=0; i<myContact.size();i++)
+    system.debug('Contact name'+cont.Name+' email '+cont.Email+' Annual revenue of the account '+cont.Account.AnnualRevenue);
+}
+
+
+List<Opportunity> myOpps= [SELECT Name,StageName,Type,Amount,Account.Name,Account.AnnualRevenue FROM Opportunity WHERE StageName NOT IN ('Closed Won', 'Closed Lost')];
+system.debug('Size of my opps' +myOpps.size());
+
+List<Opportunity> myOpps= [SELECT Name,StageName,Type,Amount,Account.Name,Account.AnnualRevenue FROM Opportunity WHERE StageName NOT IN ('Closed Won', 'Closed Lost')AND Account.AnnualRevenue<1000000];
+system.debug('Size of my opps' +myOpps.size());
+
+/*
+List<Contact> myConts=new List<Contact>();
+myConts=[SELECT Name, Email, Account.AnnualRevenue from Contact WHERE Account.AnnualRevenue>2000000];
+system.debug('Size of my contacts '+myConts.size());
+for(Contact cont: myConts){ //for(Integer i=0; i<myConts.size(); i++)
+    system.debug('Contact name '+cont.Name+' email '+cont.Email+' Annuel revenue of the account '+cont.Account.AnnualRevenue);
+}
+
+List<Opportunity> myOpps=[SELECT Name, StageName, Type, Amount, Account.Name, Account.AnnualRevenue FROM Opportunity WHERE 
+                         StageName NOT IN('Closed Won', 'Closed Lost') AND Account.AnnualRevenue>1000000];
+                         
+                         for(Opportunity myOpp: myOpps){
+    SYSTEM.debug('Annual Rev '+myOpp.Account.AnnualRevenue);
+}
+system.debug('Size of my opps '+myOpps.size());
+*/
+
