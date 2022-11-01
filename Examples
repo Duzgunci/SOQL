@@ -1,0 +1,12 @@
+SELECT Id, Name, AccountId, Amount, Type, CloseDate, OrderNumber__c, MainCompetitors__c FROM Opportunity WHERE Name Like '%AZ%'
+
+
+list<Account> myOrgAccts= new List<account>();
+myOrgAccts=[SELECT ID,Name, AnnualRevenue FROM Account WHERE AnnualRevenue>=1000000];
+system.debug(myOrgAccts);
+
+
+
+Where Name Like ‘%SLE’ —---> checks if name ends with SLA
+Where Name Like ‘SLA%’ —---> checks if name starts with SLA
+Where Name Like ‘%SLA%’ —---> checks if SLA exists anywhere in the Name
